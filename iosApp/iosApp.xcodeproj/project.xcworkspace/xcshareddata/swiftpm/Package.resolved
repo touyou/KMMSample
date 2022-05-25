@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "kmmsample",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/touyou/KMMSample",
+      "state" : {
+        "branch" : "main",
+        "revision" : "aa77e6fbf03f93cff50a64bf11529d3f641321e5"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -5,7 +5,11 @@ struct ContentView: View {
 	let greet = Greeting().greeting()
 
 	var body: some View {
-		Text(greet)
+        LazyVStack {
+            ForEach(1...10, id: \.self) { count in
+                Text(greet)
+            }
+        }
 	}
 }
 
