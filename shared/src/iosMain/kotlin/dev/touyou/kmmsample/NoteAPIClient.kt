@@ -6,11 +6,12 @@ import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.CoroutineDispatcher
 import platform.darwin.dispatch_get_main_queue
+import kotlinx.serialization.json.Json
 
 actual class NoteAPIClient actual constructor() {
     actual val client: HttpClient = HttpClient(Darwin) {
         install(ContentNegotiation) {
-            json(kotlinx.serialization.json.Json {
+            json(Json {
                 ignoreUnknownKeys = true
             })
         }
