@@ -10,7 +10,9 @@ import platform.darwin.dispatch_get_main_queue
 actual class NoteAPIClient actual constructor() {
     actual val client: HttpClient = HttpClient(Darwin) {
         install(ContentNegotiation) {
-            json()
+            json(kotlinx.serialization.json.Json {
+                ignoreUnknownKeys = true
+            })
         }
     }
 
