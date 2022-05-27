@@ -15,9 +15,16 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.android.material.composethemeadapter3.Mdc3Theme
+import dev.touyou.kmmsample.NoteAPI
 
 fun greet(): String {
     return Greeting().greeting()
+}
+
+suspend fun fetch() {
+    NoteAPI().fetchNotes { notes ->
+        print(notes)
+    }
 }
 
 class MainActivity : AppCompatActivity() {

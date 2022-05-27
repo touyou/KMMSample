@@ -10,9 +10,14 @@ import SwiftUI
 import shared
 
 class MainViewModel: ObservableObject {
+    @Published var notes = [NoteSummary]()
 
-//    private let noteAPI = NoteAPI()
+    private let noteAPI = NoteAPI()
 
-    func fetchData() {
+    func fetchData() async throws {
+        try await noteAPI.fetchNotes { [weak self] newNotes in
+            guard let self = self else { return }
+            self.notes = newNotes
+        }
     }
 }

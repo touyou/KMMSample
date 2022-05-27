@@ -4,6 +4,7 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
 
 class NoteAPI {
     val apiClient: NoteAPIClient = NoteAPIClient()
@@ -20,3 +21,21 @@ class NoteAPI {
         }
     }
 }
+
+@Serializable
+data class NoteSummary(
+    val name: String,
+    val eyecatch: String,
+    val body: String,
+)
+
+@Serializable
+data class NoteSummaries(
+    val contents: List<NoteSummary>,
+    val totalCount: Int,
+)
+
+@Serializable
+data class NoteData(
+    val data: NoteSummaries
+)

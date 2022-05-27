@@ -2,19 +2,24 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greeting()
+    @StateObject var viewModel = MainViewModel()
 
-	var body: some View {
+    var body: some View {
         LazyVStack {
-            ForEach(1...10, id: \.self) { count in
-                Text(greet)
+            ForEach(0..<viewModel.notes.count, id: \.self) { index in
+                Text(viewModel.notes[index].name)
             }
         }
-	}
+        .onAppear {
+            Task {
+                try await viewModel.fetchData()
+            }
+        }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
-	static var previews: some View {
-		ContentView()
-	}
+    static var previews: some View {
+        ContentView()
+    }
 }
